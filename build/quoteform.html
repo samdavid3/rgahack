@@ -5,61 +5,159 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>Need Insurance</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link href="app.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-  <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
   <script src="app.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">NeedInsurance</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Link</a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">Menu</i></a>
-    </div>
-  </nav>
+  <!-- NAVIGATION HEADER -->
+      <nav>
+        <div class="nav-wrapper light-blue lighten-1">
+          <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Insurance Quoter</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+            <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+            <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+            <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+          </ul>
+        </div>
+      </nav>
+      
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-      <h3 class="header orange-text">NeedInsurance</h3>
-      <h5  class="header col s12 light">You will have <span id="balance"></span> Insurance</span></h5>
-      <div class="row">
-        <div class="input-field col s6">
-          <label for="age">Age</label><input type="text" id="age" placeholder="e.g. 52 "></input>
-        </div>
-        <div class="input-field col s6">
-          <div class="btn-group" role="group" aria-label="...">
-            <button type="button" id="gender" class="btn btn-default">Male</button>
-            <button type="button" id="gender" class="btn btn-default">Female</button>
+      
+    <!-- TOP TAB NAV -->
+		<div class="row">
+      		<div class="col s12">
+      		  <ul class="tabs">
+      			<li class="tab col s3"><a class="active" id="personalInfoTab" href="#">Personal Information</a></li>
+      			<li class="tab col s3"><a id="coverageDetailsTab" href="#">Coverage Details</a></li>
+      			<li class="tab col s3"><a id="optionalTab" href="#">Optional</a></li>
+      		  </ul>
+      		</div>
+      	</div><br>
+		
+		<!-- Step 1 -->
+		<div class="card-panel row" id="personalInfoBox">
+			<h3 class="header animated bounceInLeft">Step 1:  Enter your Personal Information</h3>
+      		<div class="col s12">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <label for="age">Age</label><input type="text" id="age" placeholder="e.g. 52 "></input>
+                  </div>
+                  <div class="input-field col s6">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <div class="switch"><label>Male<input type="checkbox"><span class="lever"></span>Female</label></div></div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <label for="height">Height</label><input type="text" id="height" placeholder="e.g. 6'2&quot"></input>
+                  </div>
+                  <div class="input-field col s6">
+                    <label for="weight">Weight</label><input type="text" id="weight" placeholder="e.g. 194 "></input>
+                  </div>
+                </div>
+              
+                <div class="right-align"><button id="send" onclick="submitRequest()" class="btn-large waves-effect waves-light right-align orange">Next<i class="material-icons right">send</i></button>
+                <span class="blue-text col s12 light" id="status"></span></div>
+                
+                </br>
+              </div>
+      		</div>
+      		
+      		<!-- Step 2 -->
+      		<div class="card-panel row" id="coverageDetailsBox">
+        		<h3 class="header animated bounceInLeft">Step 2:  Enter Coverage Needs</h3>
+                <div class="row">
+                  <div class="col s1"></div>
+                  <div class="col s5 need-item" id="needsDebt">
+                  <h5 class="center-align">Existing Debt</h5>
+                  <p class="center-align">Do you have outstanding loans?<br><i class="large material-icons">payment</i></p>
+                  <p class="center-align">
+                      <a class='dropdown-button btn' href='#' data-activates='coverageNeedsDropdown'>Add Protection</a>
+                      <!-- Dropdown Structure -->
+                      <ul id='coverageNeedsDropdown' id="oustandingLoans" class='dropdown-content'>
+                        <li><a href="#!">Less than $100,000</a></li>
+                        <li><a href="#!">$100,000-$200,000</a></li>
+                        <li><a href="#!">Greater than $250,000</a></li>
+                      </ul>
+                  </p>
+                </div>
+                <div class="col s1"></div>
+                <div class="col s5 need-item" id="needsDebt">
+                  <h5 class="center-align">Education for Children</h5>
+                  <p class="center-align">Do you have the funds for increased tuition?<br><i class="large material-icons center-align">mode_edit</i></p>
+                  <p class="center-align">
+                      <a class='dropdown-button btn' href='#' data-activates='educationDropdown'>Add Protection</a>
+                      <!-- Dropdown Structure -->
+                      <ul id='educationDropdown' id="oustandingLoans" class='dropdown-content'>
+                        <li><a href="#!">1 Child</a></li>
+                        <li><a href="#!">2 Children</a></li>
+                        <li><a href="#!">3 Children</a></li>
+                        <li><a href="#!">4+ Children</a></li>
+                      </ul>
+                  </p>
+                </div></div>
+                
+                <div class="row center-align">
+                  <div class="col s1"></div>
+                <div class="col s5 need-item" id="needsDebt">
+                  <h5 class="center-align">Family Living Expenses</h5>
+                  <p class="center-align">Will your family have enough to pay for montly living expenses?<br><i class="center-align large material-icons">loop</i></p>
+                  <p class="center-align">
+                      <a class='dropdown-button btn' href='#' data-activates='livingExpensesDropdown'>Add Protection</a>
+                      <!-- Dropdown Structure -->
+                      <ul id='livingExpensesDropdown' id="livingExpenses" class='dropdown-content'>
+                        <li><a href="#!">Less than $1,000/month</a></li>
+                        <li><a href="#!">$1,000-$5,000/month</a></li>
+                        <li><a href="#!">Greater than $5,000/month</a></li>
+                      </ul>
+                  </p>
+                </div>
+                <div class="col s1"></div>
+                <div class="col s5 need-item" id="needsDebt">
+                  <h5 class="center-align">Funeral Costs</h5>
+                  <p class="center-align">Can you afford expensive funeral costs?<br><i class="center-align large material-icons">assessment</i></p>
+                  <p class="center-align">
+                      <a class='dropdown-button btn' href='#' data-activates='funeralCostDropdown'>Add Protection</a>
+                      <!-- Dropdown Structure -->
+                      <ul id='funeralCostDropdown' id="funeralCost" class='dropdown-content'>
+                        <li><a href="#!">Less than $5,000</a></li>
+                        <li><a href="#!">$5,000-$10,000</a></li>
+                        <li><a href="#!">Greater than $10,000</a></li>
+                      </ul>
+                  </p>
+                </div> 
+        		</div>
+        		<div class="row">
+              <div class="right-align"><button class="btn-large waves-effect waves-light right-align orange">Next<i class="material-icons right">send</i></button>
+            </div>
+        	</div>
+        	</div>
+      		
+      		<!-- Step 3 -->
+          <div class="card-panel row" id="optionalBox">
+            <h3 class="header animated bounceInLeft">Step 3:  Enter Optional Details</h3>
+             <div class="row">
+              <div class="col s12">
+                <label for="tobacco">Tobacco Use?</label><input type="text" id="tobacco"/>
+                <div class="input-field col s6 offset-s6"</div>
+                <div class="btn-group" role="group" aria-label="...">
+                  <div class="switch"><label>True<input type="checkbox"><span class="lever"></span>False</label></div>
+                </div>
+                </div>
+              </div>  
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <label for="zip">Zip</label><input type="text" length="5" id="zip" placeholder="e.g. 50263 "></input>
-        </div>
-        <div class="input-field col s6">
-          <label for="height">Height</label><input type="text" id="height" placeholder="e.g. 6'2&quot"></input>
-        </div>
-      </div>
-      <label for="weight">Weight</label><input type="text" id="weight" placeholder="e.g. 194 "></input>
-      <label for="tobacco">Tobacco Use?</label><input type="text" id="tobacco" placeholder="e.g. yes/no/sometimes/not at a hackathon"></input>
-      <label for="lengthOfProtection">Length of Protection</label><input type="text" id="lengthOfProtection" placeholder="e.g. 45 years"></input>
-      <label for="dmvRecords">Can I Request DMV Records?</label><input type="text" id="dmvRecords" placeholder="e.g. Yes/No"></input>
-      <label for="medicalHistory">Can I Request Medical History?</label><input type="text" id="medicalHistory" placeholder="e.g. Yes/No"></input>
-      <label for="coverageRequested">How much coverae do you want?</label><input type="text" id="coverageRequested" placeholder="e.g. 123,456"></input>
-      <button id="send" onclick="submitRequest()" class="btn-large waves-effect waves-light orange">Request Quotes</button>
-      <span class="blue-text col s12 light" id="status"></span>
-    </div>
-  </div>
+          
+		</div>
+</body>

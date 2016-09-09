@@ -2,6 +2,8 @@ module.exports = {
   build: {
     "index.html": "index.html",
     "quoteform.html": "quoteform.html",
+    "showquotes.html": "showquotes.html",
+    "startlistener.html": "startlistener.html",
     "app.js": [
       "javascripts/app.js"
     ],

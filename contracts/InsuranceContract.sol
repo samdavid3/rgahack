@@ -5,9 +5,12 @@ contract InsuranceContract {
   }
 
   struct Quote {
-        uint monthlyPremium;
-        uint coverageOffered;
+    address quoter;
+    bytes32 companyName;
+    uint monthlyPremium;
+    uint coverageOffered;
   }
+  
   
   struct InsuranceRequest {
         uint age;
@@ -20,12 +23,13 @@ contract InsuranceContract {
         bool dmvRecords;
         bool medicalHistory;
         uint coverageRequested;
-        mapping(address => Quote) quote;
+        Quote[] quotes;
   }
   
   mapping(address => InsuranceRequest) public requests;
   
   event InsuranceRequested(address requestor, uint age, bytes32 gender, uint zip, bytes32 height, uint weight, bool tobaccoUse, uint lengthOfProtection, bool dmvRecords, bool medicalHistory, uint coverageRequested);
+  event InsuranceQuoted(address requestor, bytes32 companyName, uint monthlyPremium, uint coverageOffered);
 
   function submitRequest(
     uint age, bytes32 gender, uint zip, bytes32 height, uint weight, bool tobaccoUse, uint lengthOfProtection, bool dmvRecords, bool medicalHistory, uint coverageRequested) {
@@ -44,5 +48,25 @@ contract InsuranceContract {
     InsuranceRequested(msg.sender, age, gender, zip, height, weight, tobaccoUse, lengthOfProtection, dmvRecords, medicalHistory, coverageRequested);
   }
   
+  function submitQuote(address requestor, bytes32 companyName, uint monthlyPremium, uint coverageOffered) {
+    requests[requestor].quotes.push(Quote({
+      quoter: msg.sender,
+      companyName: companyName,
+      monthlyPremium: monthlyPremium,
+      coverageOffered: coverageOffered
+    }));
+  
+    InsuranceQuoted(msg.sender, companyName, monthlyPremium, coverageOffered);
+  }
+  
+  function getNumberOfQuotes(address requestor) constant returns (uint count) {
+    count = requests[requestor].quotes.length;
+  }
+
+  function getQuotes(address requestor, uint index) constant returns (address, bytes32, uint, uint) {
+    Quote quote = requests[requestor].quotes[index];
+    return (quote.quoter, quote.companyName, quote.monthlyPremium, quote.coverageOffered);
+  }
+
 }
   
