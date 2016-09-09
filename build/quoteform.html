@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <link href="app.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">NeedInsurance</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Link</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">Menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h3 class="header orange-text">NeedInsurance</h3>
+      <h5  class="header col s12 light">You will have <span id="balance"></span> Insurance</span></h5>
+      <div class="row">
+        <div class="input-field col s6">
+          <label for="age">Age</label><input type="text" id="age" placeholder="e.g. 52 "></input>
+        </div>
+        <div class="input-field col s6">
+          <div class="btn-group" role="group" aria-label="...">
+            <button type="button" id="gender" class="btn btn-default">Male</button>
+            <button type="button" id="gender" class="btn btn-default">Female</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <label for="zip">Zip</label><input type="text" length="5" id="zip" placeholder="e.g. 50263 "></input>
+        </div>
+        <div class="input-field col s6">
+          <label for="height">Height</label><input type="text" id="height" placeholder="e.g. 6'2&quot"></input>
+        </div>
+      </div>
+      <label for="weight">Weight</label><input type="text" id="weight" placeholder="e.g. 194 "></input>
+      <label for="tobacco">Tobacco Use?</label><input type="text" id="tobacco" placeholder="e.g. yes/no/sometimes/not at a hackathon"></input>
+      <label for="lengthOfProtection">Length of Protection</label><input type="text" id="lengthOfProtection" placeholder="e.g. 45 years"></input>
+      <label for="dmvRecords">Can I Request DMV Records?</label><input type="text" id="dmvRecords" placeholder="e.g. Yes/No"></input>
+      <label for="medicalHistory">Can I Request Medical History?</label><input type="text" id="medicalHistory" placeholder="e.g. Yes/No"></input>
+      <label for="coverageRequested">How much coverae do you want?</label><input type="text" id="coverageRequested" placeholder="e.g. 123,456"></input>
+      <button id="send" onclick="submitRequest()" class="btn-large waves-effect waves-light orange">Request Quotes</button>
+      <span class="blue-text col s12 light" id="status"></span>
+    </div>
+  </div>

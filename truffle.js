@@ -1,7 +1,7 @@
 module.exports = {
   build: {
     "index.html": "index.html",
-    "pretty.html": "pretty.html",
+    "quoteform.html": "quoteform.html",
     "app.js": [
       "javascripts/app.js"
     ],

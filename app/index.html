@@ -1,30 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>MetaCoin - Default Truffle App</title>
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Compiled and minified CSS -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-  <!-- Compiled and minified JavaScript -->
+  <link href="app.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-  <script src="./app.js"></script>
-  
-  <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="app.js"></script>
 </head>
 <body>
-  <h1>MetaCoin</h1>
-  <h2>Example Truffle Dapp</h2>
-  <h3>You have <span id="balance"></span> META</span></h3>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">NeedInsurance</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Link</a></li>
+      </ul>
 
-  <br>
-  <h1>Send</h1>
-  <br><label for="amount">Amount:</label><input type="text" id="amount" placeholder="e.g., 95"></input>
-  <br><label for="receiver">To Address:</label><input type="text" id="receiver" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>
-  <br><br><button id="send" onclick="sendCoin()">Send MetaCoin</button>
-  <br><br>
-  <span id="status"></span>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">Menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12"><img src="./images/mountains.jpg" width="75%" class="img-responsive" alt="Mountains"></div>
+      </div>
+      
+      <p>You need life insurance.  Bad.  You need quotes for life insurance from many companies to get the best deal.  
+      If you don't get a good deal you will not have enough money to buy that golf club you've been wanting.Click below.</p>
+      <div class="input-field col s6"></div>
+        <div class="input-field col s6"><a type="button" class="btn btn-primary" href="./quoteform.html">Get Quotes</a></div>
+       <div class="input-field col s6"></div>
+    </div>
+  </div>
 </body>
-</html>

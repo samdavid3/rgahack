@@ -231,13 +231,13 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.new = function() {
     if (this.currentProvider == null) {
-      throw new Error("Migrations error: Please call setProvider() first before calling new().");
+      throw new Error("InsuranceContract error: Please call setProvider() first before calling new().");
     }
 
     var args = Array.prototype.slice.call(arguments);
 
     if (!this.unlinked_binary) {
-      throw new Error("Migrations error: contract binary not set. Can't deploy new instance.");
+      throw new Error("InsuranceContract error: contract binary not set. Can't deploy new instance.");
     }
 
     var regex = /__[^_]+_+/g;
@@ -256,7 +256,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         return name != arr[index + 1];
       }).join(", ");
 
-      throw new Error("Migrations contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of Migrations: " + unlinked_libraries);
+      throw new Error("InsuranceContract contains unresolved libraries. You must deploy and link the following libraries before you can deploy a new version of InsuranceContract: " + unlinked_libraries);
     }
 
     var self = this;
@@ -297,7 +297,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.at = function(address) {
     if (address == null || typeof address != "string" || address.length != 42) {
-      throw new Error("Invalid address passed to Migrations.at(): " + address);
+      throw new Error("Invalid address passed to InsuranceContract.at(): " + address);
     }
 
     var contract_class = this.web3.eth.contract(this.abi);
@@ -308,7 +308,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
 
   Contract.deployed = function() {
     if (!this.address) {
-      throw new Error("Cannot find deployed address: Migrations not deployed or address not set.");
+      throw new Error("Cannot find deployed address: InsuranceContract not deployed or address not set.");
     }
 
     return this.at(this.address);
@@ -353,60 +353,238 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "constant": false,
         "inputs": [
           {
-            "name": "new_address",
-            "type": "address"
+            "name": "age",
+            "type": "uint256"
+          },
+          {
+            "name": "gender",
+            "type": "bytes32"
+          },
+          {
+            "name": "zip",
+            "type": "uint256"
+          },
+          {
+            "name": "height",
+            "type": "bytes32"
+          },
+          {
+            "name": "weight",
+            "type": "uint256"
+          },
+          {
+            "name": "tobaccoUse",
+            "type": "bool"
+          },
+          {
+            "name": "lengthOfProtection",
+            "type": "uint256"
+          },
+          {
+            "name": "dmvRecords",
+            "type": "bool"
+          },
+          {
+            "name": "medicalHistory",
+            "type": "bool"
+          },
+          {
+            "name": "coverageRequested",
+            "type": "uint256"
           }
         ],
-        "name": "upgrade",
+        "name": "submitRequest",
         "outputs": [],
         "type": "function"
       },
       {
         "constant": true,
-        "inputs": [],
-        "name": "last_completed_migration",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "owner",
-        "outputs": [
-          {
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "type": "function"
-      },
-      {
-        "constant": false,
         "inputs": [
           {
-            "name": "completed",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "requests",
+        "outputs": [
+          {
+            "name": "age",
+            "type": "uint256"
+          },
+          {
+            "name": "gender",
+            "type": "bytes32"
+          },
+          {
+            "name": "zip",
+            "type": "uint256"
+          },
+          {
+            "name": "height",
+            "type": "bytes32"
+          },
+          {
+            "name": "weight",
+            "type": "uint256"
+          },
+          {
+            "name": "tobaccoUse",
+            "type": "bool"
+          },
+          {
+            "name": "lengthOfProtection",
+            "type": "uint256"
+          },
+          {
+            "name": "dmvRecords",
+            "type": "bool"
+          },
+          {
+            "name": "medicalHistory",
+            "type": "bool"
+          },
+          {
+            "name": "coverageRequested",
             "type": "uint256"
           }
         ],
-        "name": "setCompleted",
-        "outputs": [],
         "type": "function"
       },
       {
         "inputs": [],
         "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "requestor",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "age",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "gender",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "name": "zip",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "height",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "tobaccoUse",
+            "type": "bool"
+          },
+          {
+            "indexed": false,
+            "name": "lengthOfProtection",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "dmvRecords",
+            "type": "bool"
+          },
+          {
+            "indexed": false,
+            "name": "medicalHistory",
+            "type": "bool"
+          },
+          {
+            "indexed": false,
+            "name": "coverageRequested",
+            "type": "uint256"
+          }
+        ],
+        "name": "InsuranceRequested",
+        "type": "event"
       }
     ],
-    "unlinked_binary": "0x606060405260008054600160a060020a03191633179055610130806100246000396000f3606060405260e060020a60003504630900f010811461003c578063445df0ac146100c05780638da5cb5b146100c9578063fdacd576146100db575b005b61003a60043560008054600160a060020a039081163390911614156100bc57604080516001547ffdacd576000000000000000000000000000000000000000000000000000000008252600482015290518392600160a060020a0384169263fdacd5769260248281019392829003018183876161da5a03f115610002575050505b5050565b61010160015481565b610113600054600160a060020a031681565b61003a60043560005433600160a060020a03908116911614156100fe5760018190555b50565b60408051918252519081900360200190f35b60408051600160a060020a03929092168252519081900360200190f3",
-    "events": {},
-    "updated_at": 1473391213738,
-    "address": "0xe78a0f7e598cc8b0bb87894b0f60dd2a88d6a8ab",
-    "links": {}
+    "unlinked_binary": "0x60606040526101d6806100126000396000f3606060405260e060020a60003504637043bcc4811461002657806374adad1d1461013b575b005b61002460043560243560443560643560843560a43560c43560e435610104356101243573ffffffffffffffffffffffffffffffffffffffff331660008181526020819052604090208b8155600181018b9055600281018a9055600381018990556004810188905560058101805460ff1990811689179091556006820187905560078201805461010087810261ff0019929094168917919091169290921790556008909101839055606091825260808c905260a08b905260c08a905260e089905287905285151561012052610140859052831515610160908152831515610180526101a08390527f60094e1d066d25d436e7eb94d679e76cac297d5f13a6faf5bc0d27aab4478b6891a150505050505050505050565b6000602081905260048035825260409091208054600182015460028301546003840154948401546005850154600686015460078701546008909701546101969896979596949560ff938416938082169261010090920416908a565b6060998a5260809890985260a09690965260c09490945260e092909252151561010052610120521515610140908152901515610160526101809190915290f3",
+    "events": {
+      "0x60094e1d066d25d436e7eb94d679e76cac297d5f13a6faf5bc0d27aab4478b68": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "requestor",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "age",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "gender",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "name": "zip",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "height",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "tobaccoUse",
+            "type": "bool"
+          },
+          {
+            "indexed": false,
+            "name": "lengthOfProtection",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "name": "dmvRecords",
+            "type": "bool"
+          },
+          {
+            "indexed": false,
+            "name": "medicalHistory",
+            "type": "bool"
+          },
+          {
+            "indexed": false,
+            "name": "coverageRequested",
+            "type": "uint256"
+          }
+        ],
+        "name": "InsuranceRequested",
+        "type": "event"
+      }
+    },
+    "updated_at": 1473391213707,
+    "links": {},
+    "address": "0xc89ce4735882c9f0f0fe26686c53074e09b0d550"
   }
 };
 
@@ -491,7 +669,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     Contract.links[name] = address;
   };
 
-  Contract.contract_name   = Contract.prototype.contract_name   = "Migrations";
+  Contract.contract_name   = Contract.prototype.contract_name   = "InsuranceContract";
   Contract.generated_with  = Contract.prototype.generated_with  = "3.2.0";
 
   // Allow people to opt-in to breaking changes now.
@@ -531,6 +709,6 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   } else {
     // There will only be one version of this contract in the browser,
     // and we can use that.
-    window.Migrations = Contract;
+    window.InsuranceContract = Contract;
   }
 })();

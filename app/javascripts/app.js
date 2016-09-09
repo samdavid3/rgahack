@@ -9,6 +9,20 @@ var account;
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
+(function() {
+  $("#range").slider({
+    range: "min",
+    min: 0,
+    max: 100,
+    value: 50,
+    slide: function(e, ui) {
+      return $(".ui-slider-handle").html(ui.value);
+    }
+  });
+
+  $(".ui-slider-handle").html("50");
+
+}).call(this);
 
 function setStatus(message) {
   var status = document.getElementById("status");
@@ -27,17 +41,41 @@ function refreshBalance() {
   });
 };
 
-function sendCoin() {
-  var meta = MetaCoin.deployed();
-
-  var amount = parseInt(document.getElementById("amount").value);
-  var receiver = document.getElementById("receiver").value;
-
+function submitRequest() {
+  var meta = InsuranceContract.deployed();
+  
+  var age = document.getElementById("age");
+  var gender = document.getElementById("gender");
+  var zip = document.getElementById("zip");
+  var height = document.getElementById("height");
+  var weight = document.getElementById("weight");
+  var tobacco = document.getElementById("tobacco");
+  var lengthOfProtection = document.getElementById("lengthOfProtection");
+  var dmvRecords = document.getElementById("dmvRecords");
+  var medicalHistory = document.getElementById("medicalHistory");
+  var coverageRequested = document.getElementById("coverageRequested");
+  
+  age = 54;
+  gender = "Male";
+  zip = 50263;
+  height = "6'4";
+  weight = 195;
+  tobacco = true;
+  lengthOfProtection = 24;
+  dmvRecords = true;
+  medicalHistory = false;
+  coverageRequested = 100000;
+  
+ 
   setStatus("Initiating transaction... (please wait)");
 
-  meta.sendCoin(receiver, amount, {from: account}).then(function() {
+  meta.submitRequest(age, gender, zip, height, weight, tobacco, lengthOfProtection, dmvRecords, medicalHistory, coverageRequested, {from: account}).then(function() {
     setStatus("Transaction complete!");
-    refreshBalance();
+    meta.InsuranceRequested().watch( (err, resp) => {
+        console.log(resp.args.age)
+         setStatus(resp.args.age.toNumber());
+    }
+    )
   }).catch(function(e) {
     console.log(e);
     setStatus("Error sending coin; see log.");
