@@ -42748,7 +42748,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405260358060106000396000f36503063fc68da550606060405260e060020a600035046396e4ee3d81146024575b6007565b602435600435026060908152602090f3",
     "events": {},
-    "updated_at": 1473446229574,
+    "updated_at": 1473514289596,
     "links": {},
     "address": "0xcfeb869f69431e42cdb54a4f4f105c19c080a601"
   }
@@ -43232,6 +43232,13 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   "default": {
     "abi": [
       {
+        "constant": false,
+        "inputs": [],
+        "name": "removeQuotes",
+        "outputs": [],
+        "type": "function"
+      },
+      {
         "constant": true,
         "inputs": [
           {
@@ -43500,7 +43507,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     ],
-    "unlinked_binary": "0x6060604052610450806100126000396000f3606060405260e060020a6000350463348b54cb81146100475780637043bcc41461007757806374adad1d14610198578063acdffae6146101f3578063e785f45b1461028d575b005b600160a060020a036004351660009081526020819052604090206009015460408051918252519081900360200190f35b61004560043560243560443560643560843560a43560c43560e435610104356101243533600160a060020a0316600081815260208181526040918290208d8155600181018d9055600281018c9055600381018b9055600481018a905560058101805460ff199081168b179091556006820189905560078201805461010089810261ff0019929094168b1791909116929092179055600890910185905582519384529083018d90528282018c9052606083018b9052608083018a905260a0830189905287151560c084015260e08301879052851515908301528315156101208301526101408201839052517f60094e1d066d25d436e7eb94d679e76cac297d5f13a6faf5bc0d27aab4478b68918190036101600190a150505050505050505050565b6000602081905260048035825260409091208054600182015460028301546003840154948401546005850154600686015460078701546008909701546103049896979596949560ff938416938082169261010090920416908a565b610045600435602435604435606435600160a060020a038416600090815260208190526040902060090180546001810180835582818380158290116103895760040281600402836000526020600020918201910161038991905b8082111561044c57805473ffffffffffffffffffffffffffffffffffffffff1916815560006001820181905560028201819055600382015560040161024d565b610358600435602435600160a060020a038216600090815260208190526040812060090180548291829182918291879081101561000257600091825260209091206004919091020180546001820154600283015460039390930154600160a060020a03929092169a90995091975095509350505050565b604080519a8b5260208b0199909952898901979097526060890195909552608088019390935290151560a087015260c0860152151560e0850152151561010084015261012083015251908190036101400190f35b60408051600160a060020a039590951685526020850193909352838301919091526060830152519081900360800190f35b5050509190906000526020600020906004020160005060408051608081810183523380835260208381018a90528385018990526060938401889052855473ffffffffffffffffffffffffffffffffffffffff191682178655600186018a9055600286018990556003959095018790558351600160a060020a0391909116815293840188905283830187905290830185905290517f1d6376efb5768191ddf99b6f88e6c4afce156c84ab26661eb50accef9b515ae79350918290030190a150505050565b509056",
+    "unlinked_binary": "0x6060604052610612806100126000396000f3606060405236156100565760e060020a6000350463038df41d8114610058578063348b54cb146100d45780637043bcc41461010457806374adad1d14610225578063acdffae614610280578063e785f45b146103ad575b005b61005633600160a060020a031660009081526020819052604081206009018054828255829080158290116104a9576004028160040283600052602060002091820191016104a991905b808211156104af578054600160a060020a03191681556000600182018190556002820181905560038201556004016100a1565b600160a060020a036004351660009081526020819052604090206009015460408051918252519081900360200190f35b61005660043560243560443560643560843560a43560c43560e435610104356101243533600160a060020a0316600081815260208181526040918290208d8155600181018d9055600281018c9055600381018b9055600481018a905560058101805460ff199081168b179091556006820189905560078201805461010089810261ff0019929094168b1791909116929092179055600890910185905582519384529083018d90528282018c9052606083018b9052608083018a905260a0830189905287151560c084015260e08301879052851515908301528315156101208301526101408201839052517f60094e1d066d25d436e7eb94d679e76cac297d5f13a6faf5bc0d27aab4478b68918190036101600190a150505050505050505050565b6000602081905260048035825260409091208054600182015460028301546003840154948401546005850154600686015460078701546008909701546104249896979596949560ff938416938082169261010090920416908a565b6100566004356024356044356064356040805160808101825233600160a060020a039081168252602082810187905282840186905260608301859052908716600090815290819052918220909160099190910190805b82548110156104b3578660001916838281548110156100025790600052602060002090600402016000506001015414156103a557828181548110156100025790600052602060002090600402016000508054600160a060020a03191681556000600182018190556002820181905560039190910155825484908490839081101561000257906000526020600020906004020160005081518154600160a060020a031916178155602082015160018281019190915560408301516002830155606092909201516003919091015591505b6001016102d6565b610478600435602435600160a060020a038216600090815260208190526040812060090180548291829182918291879081101561000257600091825260209091206004919091020180546001820154600283015460039390930154600160a060020a03929092169a90995091975095509350505050565b604080519a8b5260208b0199909952898901979097526060890195909552608088019390935290151560a087015260c0860152151560e0850152151561010084015261012083015251908190036101400190f35b60408051600160a060020a039590951685526020850193909352838301919091526060830152519081900360800190f35b50505050565b5090565b811515610538578280548060010182818154818355818115116104ef576004028160040283600052602060002091820191016104ef91906100a1565b5050509190906000526020600020906004020160005085518154600160a060020a0319161781556020860151600182015560408601516002820155606086015160039190910155505b82805480600101828181548183558181151161056d5760040281600402836000526020600020918201910161056d91906100a1565b5050509190906000526020600020906004020160005085518154600160a060020a0319161781556020868101516001830155604087810151600284015560608881015160039490940193909355805133600160a060020a031681529182018b90528181018a905291810188905290517f1d6376efb5768191ddf99b6f88e6c4afce156c84ab26661eb50accef9b515ae792509081900360800190a1505050505050505056",
     "events": {
       "0x60094e1d066d25d436e7eb94d679e76cac297d5f13a6faf5bc0d27aab4478b68": {
         "anonymous": false,
@@ -43592,7 +43599,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1473446229565,
+    "updated_at": 1473514289462,
     "links": {},
     "address": "0xc89ce4735882c9f0f0fe26686c53074e09b0d550"
   }
@@ -44182,7 +44189,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1473446229550,
+    "updated_at": 1473514289679,
     "links": {
       "ConvertLib": "0xcfeb869f69431e42cdb54a4f4f105c19c080a601"
     },
@@ -44722,7 +44729,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405260008054600160a060020a03191633179055610130806100246000396000f3606060405260e060020a60003504630900f010811461003c578063445df0ac146100c05780638da5cb5b146100c9578063fdacd576146100db575b005b61003a60043560008054600160a060020a039081163390911614156100bc57604080516001547ffdacd576000000000000000000000000000000000000000000000000000000008252600482015290518392600160a060020a0384169263fdacd5769260248281019392829003018183876161da5a03f115610002575050505b5050565b61010160015481565b610113600054600160a060020a031681565b61003a60043560005433600160a060020a03908116911614156100fe5760018190555b50565b60408051918252519081900360200190f35b60408051600160a060020a03929092168252519081900360200190f3",
     "events": {},
-    "updated_at": 1473446229581,
+    "updated_at": 1473514289926,
     "address": "0xe78a0f7e598cc8b0bb87894b0f60dd2a88d6a8ab",
     "links": {}
   }
@@ -44915,16 +44922,29 @@ var account5;
 var quoteCount = 0;
 var funeralCost = 0;
 
+var companyNames = ["Principal"
+, "Metropolitan Life"
+, "American International"
+, "The Hartford Financial"
+, "Northwestern Mutual"
+, "Prudential Insurance"
+, "New York Life Insurance"
+, "AEGON USA Inc."
+, "Lincoln National Corp."
+, "John Hancock Mutual"
+, "Massachusetts Mutual"
+, "Axa Insurance Group"
+, "State Farm Insurance"]
+
 var quotes = [];
+
+var quoteObjects = [];
 
 (function($) {
   $(function() {
     $('.button-collapse').sideNav();
   }); // end of document ready
 })(jQuery); // end of jQuery name space
-
-
-
 
 function setStatus(message) {
   var status = document.getElementById("status");
@@ -44935,19 +44955,6 @@ function outputUpdate(vol) {
   document.querySelector('#height').value = vol;
 }
 
-function refreshBalance() {
-  var meta = MetaCoin.deployed();
-
-  meta.getBalance.call(account, {
-    from: account
-  }).then(function(value) {
-    var balance_element = document.getElementById("balance");
-    balance_element.innerHTML = value.valueOf();
-  }).catch(function(e) {
-    console.log(e);
-    setStatus("Error getting balance; see log.");
-  });
-};
 
 function submitRequest() {
   var meta = InsuranceContract.deployed();
@@ -44998,23 +45005,38 @@ function queryForQuotes() {
     getEachQuote(value.toNumber());
   }).catch(function(e) {
     console.log(e);
-    setStatus("Error getting balance; see log.");
   });
 }
 
-function getEachQuote ( numberOfQuotes ) {
+function getEachQuote(numberOfQuotes) {
   var meta = InsuranceContract.deployed();
-  
-  for ( var i; i < numberOfQuotes; i++ ) {
+
+  for (var i = 0; i < numberOfQuotes - 1; i++) {
     meta.getQuotes.call(account, i, {
       from: account
     }).then(function(value) {
-      console.log(value.args[2]);
+      console.log(web3.toAscii(value[1]));
+      var foundCompany = false;
+      for (var i = 0; i < quoteObjects.length; i++) {
+        if (quoteObjects[i].companyName == web3.toAscii(value[1])) {
+          foundCompany = true;
+        }
+      }
+      if (!foundCompany) {
+        var quote = {
+          companyName: web3.toAscii(value[1]),
+          premium: value[2].toNumber(),
+          coverage: value[3].toNumber()
+        };
+        quoteObjects.push(quote);
+        showQuotes(quote);
+      }
     }).catch(function(e) {
       console.log(e);
-      setStatus("Error getting balance; see log.");
     });
   }
+
+
 }
 
 function startListening() {
@@ -45025,36 +45047,77 @@ function startListening() {
   })
 }
 
+function removeAllQuotes() {
+  console.log("I'm listening");
+  var meta = InsuranceContract.deployed();
+    meta.removeQuotes({
+      from: account
+    }).then(function() {
+      setStatus("Deleted all quotes");
+      console.log("fired event");
+    }).catch(function(e) {
+      console.log(e);
+      setStatus("Error requesting quote.");
+    });
+}
+
 function listenForQuotes() {
   var meta = InsuranceContract.deployed();
+  console.log("listening for quotes");
   meta.InsuranceQuoted().watch((err, resp) => {
-    var companyName = web3.toAscii(resp.args.companyName);
-    console.log(companyName.trim().length);
-    if ( quoteCount > 0) {
-      quotes.push(web3.toAscii(resp.args.companyName));
+    if (!(resp.args.coverageOffered.toNumber() == 50263) ) {
+      var foundCompany = false;
+      for (var i = 0; i < quoteObjects.length - 1; i++) {
+        if (quoteObjects[i].companyName == web3.toAscii(resp.args.companyName)) {
+          foundCompany = true;
+        }
+      }
+      if (!foundCompany) {
+        var quote = {
+          companyName: web3.toAscii(resp.args.companyName),
+          premium: resp.args.monthlyPremium.toNumber(),
+          coverage: resp.args.coverageOffered.toNumber()
+        };
+        quoteObjects.push(quote);
+        showQuotes(quote);
+      }
     }
-    quoteCount++;
-    console.log(web3.toAscii(resp.args.companyName));
-    showQuotes();
   })
 
 }
 
-function showQuotes() {
-  var quoteString = "";
-  quotes.map(quote => {
-    console.log(typeof quote);
-    quoteString = quoteString + '<li class="collection-item"><i class="material-icons">send</i> ' + quote + "</li>";
-    console.log(quoteString);
-  })
-  $('#quoteValues').html(quoteString);
+function showQuotes(quote) {
+  var quoteString =
+    '<li class="collection-item avatar">' +
+    '<i class="material-icons circle blue">assignment_ind</i>' +
+    '<span class="title"><h5>' + quote.companyName + '</h5></span>' +
+    '<p>Premium: ' + numeral(quote.premium).format('$0,0.00') + '<br>' +
+    'Coverage: ' + numeral(quote.coverage).format('$0,0.00') +
+    '</p>' +
+    '</li>'
+  $('#noQuotes').hide();
+  $('#quoteValues').append(quoteString);
 }
 
+function getRandomCompany() {
+  var companyLength = companyNames.length -1;
+  var randomIndex = Math.round(Math.random() * companyLength - 1);
+  if (randomIndex >  companyNames.length -1) {
+    randomIndex = companyNames.length -1;
+  }
+  return companyNames[randomIndex];
+}
 
 function addQuotes() {
   var meta = InsuranceContract.deployed();
+
+  var companyName;
+  var companyLength = companyNames.length;
+
+  companyName = getRandomCompany();
   setTimeout(function() {
-    meta.submitQuote(account, web3.toHex("RGA Reinsurance"), 200000, 1000000, {
+    companyName = getRandomCompany();
+    meta.submitQuote(account, web3.toHex(companyName), 600, 500000, {
       from: account1
     }).then(function() {
       setStatus("Transaction complete!");
@@ -45065,8 +45128,11 @@ function addQuotes() {
     });
   }, 10000)
 
+  companyName = getRandomCompany();
+  console.log(companyName);
   setTimeout(function() {
-    meta.submitQuote(account, web3.toHex("Principal"), 100000, 2000000, {
+    companyName = getRandomCompany();
+    meta.submitQuote(account, web3.toHex(companyName), 750, 600000, {
       from: account1
     }).then(function() {
       setStatus("Transaction complete!");
@@ -45077,8 +45143,11 @@ function addQuotes() {
     });
   }, 2000)
 
+
+  console.log(companyName);
   setTimeout(function() {
-    meta.submitQuote(account, web3.toHex("Prudential"), 400000, 500000, {
+    companyName = getRandomCompany();
+    meta.submitQuote(account, web3.toHex(companyName), 925, 800000, {
       from: account1
     }).then(function() {
       setStatus("Transaction complete!");
@@ -45089,18 +45158,6 @@ function addQuotes() {
     });
   }, 3000)
 
-
-  setTimeout(function() {
-    meta.submitQuote(account, web3.toHex("IBM Bluemix Insurance"), 2000000000, 500, {
-      from: account1
-    }).then(function() {
-      setStatus("Transaction complete!");
-      console.log("fired event");
-    }).catch(function(e) {
-      console.log(e);
-      setStatus("Error requesting quote.");
-    });
-  }, 4000)
 }
 
 window.onload = function() {
@@ -45123,32 +45180,62 @@ window.onload = function() {
     account4 = accounts[4];
     account5 = accounts[5];
 
-    queryForQuotes();
-
     listenForQuotes();
 
+    queryForQuotes();
+
     $("#coverageDetailsBox").hide();
-    $("#optionalBox").hide();
+    $("#consentBox").hide();
   });
 
-
-
-  $("#personalInfoTab").click(function() {
+  $(".personalInfoTab").click(function(){
     $("#personalInfoBox").show();
     $("#coverageDetailsBox").hide();
-    $("#optionalBox").hide();
+    $("#consentBox").hide();
+    $(".consentTab").children(".active").removeClass("active");
+    $(".coverageDetailsTab").children(".active").removeClass("active");
   });
 
-  $("#coverageDetailsTab").click(function() {
+  $(".coverageDetailsTab").click(function(){
     $("#personalInfoBox").hide();
     $("#coverageDetailsBox").show();
-    $("#optionalBox").hide();
+    $("#consentBox").hide();
+    $(".personalInfoTab").children(".active").removeClass("active");
+    $(".consentTab").children(".active").removeClass("active");
   });
-
-  $("#optionalTab").click(function() {
+  
+  $(".consentTab").click(function(){
     $("#personalInfoBox").hide();
     $("#coverageDetailsBox").hide();
-    $("#optionalBox").show();
+    $("#consentBox").show();
+    $(".personalInfoTab").children(".active").removeClass("active");
+    $(".coverageDetailsTab").children(".active").removeClass("active");
   });
+
+  $("#step2NextButton").click(function() {
+    $(".consentTab").click();
+  });
+
+  $("#step1NextButton").click(function() {
+    $(".coverageDetailsTab").click();
+  });
+
+
+
+  $('#coverageNeedsDropdown li a').on('click', function() {
+    $('#coverageNeedsButton').text($(this).text());
+  });
+
+  $('#educationDropdown li a').on('click', function() {
+    $('#educationButton').text($(this).text());
+  });
+
+  $('#livingExpensesDropdown li a').on('click', function() {
+    $('#livingExpensedButton').text($(this).text());
+  });
+
+  $('#funeralCostDropdown li a').on('click', function() {
+    $('#funeralCostButton').text($(this).text());
+  });
+
 }
- 

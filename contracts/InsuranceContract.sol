@@ -1,7 +1,6 @@
 contract InsuranceContract {
 
   function InsuranceContract() {
-  
   }
 
   struct Quote {
@@ -10,7 +9,6 @@ contract InsuranceContract {
     uint monthlyPremium;
     uint coverageOffered;
   }
-  
   
   struct InsuranceRequest {
         uint age;
@@ -49,14 +47,33 @@ contract InsuranceContract {
   }
   
   function submitQuote(address requestor, bytes32 companyName, uint monthlyPremium, uint coverageOffered) {
-    requests[requestor].quotes.push(Quote({
-      quoter: msg.sender,
-      companyName: companyName,
-      monthlyPremium: monthlyPremium,
-      coverageOffered: coverageOffered
-    }));
+    Quote memory quote;
+    quote.quoter = msg.sender;
+    quote.companyName = companyName;
+    quote.monthlyPremium = monthlyPremium;
+    quote.coverageOffered = coverageOffered;
+    
+    Quote[] quotes = requests[requestor].quotes;
+    bool overwroteExistingQuote = false;
+    for (uint i = 0; i < quotes.length; i++) {
+      if (quotes[i].companyName == companyName) {
+        delete quotes[i];
+        quotes[i] = quote;
+        overwroteExistingQuote = true;
+      }
+    }
+    
+    if(!overwroteExistingQuote) {
+      quotes.push(quote);
+    }
+    
+    quotes.push(quote);
   
     InsuranceQuoted(msg.sender, companyName, monthlyPremium, coverageOffered);
+  }
+  
+  function removeQuotes() {
+    requests[msg.sender].quotes.length = 0;
   }
   
   function getNumberOfQuotes(address requestor) constant returns (uint count) {
