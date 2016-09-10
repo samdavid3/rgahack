@@ -45083,7 +45083,6 @@ function listenForQuotes() {
       }
     }
   })
-
 }
 
 function showQuotes(quote) {
@@ -45094,6 +45093,7 @@ function showQuotes(quote) {
     '<p>Premium: ' + numeral(quote.premium).format('$0,0.00') + '<br>' +
     'Coverage: ' + numeral(quote.coverage).format('$0,0.00') +
     '</p>' +
+    '<button id="send" class="secondary-content btn-large waves-effect waves-light right-align orange">Apply<i class="material-icons right">send</i></button>' +
     '</li>'
   $('#noQuotes').hide();
   $('#quoteValues').append(quoteString);
