@@ -8,16 +8,29 @@ var account5;
 var quoteCount = 0;
 var funeralCost = 0;
 
+var companyNames = ["Principal"
+, "Metropolitan Life"
+, "American International"
+, "The Hartford Financial"
+, "Northwestern Mutual"
+, "Prudential Insurance"
+, "New York Life Insurance"
+, "AEGON USA Inc."
+, "Lincoln National Corp."
+, "John Hancock Mutual"
+, "Massachusetts Mutual"
+, "Axa Insurance Group"
+, "State Farm Insurance"]
+
 var quotes = [];
+
+var quoteObjects = [];
 
 (function($) {
   $(function() {
     $('.button-collapse').sideNav();
   }); // end of document ready
 })(jQuery); // end of jQuery name space
-
-
-
 
 function setStatus(message) {
   var status = document.getElementById("status");
@@ -28,19 +41,6 @@ function outputUpdate(vol) {
   document.querySelector('#height').value = vol;
 }
 
-function refreshBalance() {
-  var meta = MetaCoin.deployed();
-
-  meta.getBalance.call(account, {
-    from: account
-  }).then(function(value) {
-    var balance_element = document.getElementById("balance");
-    balance_element.innerHTML = value.valueOf();
-  }).catch(function(e) {
-    console.log(e);
-    setStatus("Error getting balance; see log.");
-  });
-};
 
 function submitRequest() {
   var meta = InsuranceContract.deployed();
@@ -91,23 +91,38 @@ function queryForQuotes() {
     getEachQuote(value.toNumber());
   }).catch(function(e) {
     console.log(e);
-    setStatus("Error getting balance; see log.");
   });
 }
 
-function getEachQuote ( numberOfQuotes ) {
+function getEachQuote(numberOfQuotes) {
   var meta = InsuranceContract.deployed();
-  
-  for ( var i; i < numberOfQuotes; i++ ) {
+
+  for (var i = 0; i < numberOfQuotes - 1; i++) {
     meta.getQuotes.call(account, i, {
       from: account
     }).then(function(value) {
-      console.log(value.args[2]);
+      console.log(web3.toAscii(value[1]));
+      var foundCompany = false;
+      for (var i = 0; i < quoteObjects.length; i++) {
+        if (quoteObjects[i].companyName == web3.toAscii(value[1])) {
+          foundCompany = true;
+        }
+      }
+      if (!foundCompany) {
+        var quote = {
+          companyName: web3.toAscii(value[1]),
+          premium: value[2].toNumber(),
+          coverage: value[3].toNumber()
+        };
+        quoteObjects.push(quote);
+        showQuotes(quote);
+      }
     }).catch(function(e) {
       console.log(e);
-      setStatus("Error getting balance; see log.");
     });
   }
+
+
 }
 
 function startListening() {
@@ -118,36 +133,77 @@ function startListening() {
   })
 }
 
+function removeAllQuotes() {
+  console.log("I'm listening");
+  var meta = InsuranceContract.deployed();
+    meta.removeQuotes({
+      from: account
+    }).then(function() {
+      setStatus("Deleted all quotes");
+      console.log("fired event");
+    }).catch(function(e) {
+      console.log(e);
+      setStatus("Error requesting quote.");
+    });
+}
+
 function listenForQuotes() {
   var meta = InsuranceContract.deployed();
+  console.log("listening for quotes");
   meta.InsuranceQuoted().watch((err, resp) => {
-    var companyName = web3.toAscii(resp.args.companyName);
-    console.log(companyName.trim().length);
-    if ( quoteCount > 0) {
-      quotes.push(web3.toAscii(resp.args.companyName));
+    if (!(resp.args.coverageOffered.toNumber() == 50263) ) {
+      var foundCompany = false;
+      for (var i = 0; i < quoteObjects.length - 1; i++) {
+        if (quoteObjects[i].companyName == web3.toAscii(resp.args.companyName)) {
+          foundCompany = true;
+        }
+      }
+      if (!foundCompany) {
+        var quote = {
+          companyName: web3.toAscii(resp.args.companyName),
+          premium: resp.args.monthlyPremium.toNumber(),
+          coverage: resp.args.coverageOffered.toNumber()
+        };
+        quoteObjects.push(quote);
+        showQuotes(quote);
+      }
     }
-    quoteCount++;
-    console.log(web3.toAscii(resp.args.companyName));
-    showQuotes();
   })
-
 }
 
-function showQuotes() {
-  var quoteString = "";
-  quotes.map(quote => {
-    console.log(typeof quote);
-    quoteString = quoteString + '<li class="collection-item"><i class="material-icons">send</i> ' + quote + "</li>";
-    console.log(quoteString);
-  })
-  $('#quoteValues').html(quoteString);
+function showQuotes(quote) {
+  var quoteString =
+    '<li class="collection-item avatar">' +
+    '<i class="material-icons circle blue">assignment_ind</i>' +
+    '<span class="title"><h5>' + quote.companyName + '</h5></span>' +
+    '<p>Premium: ' + numeral(quote.premium).format('$0,0.00') + '<br>' +
+    'Coverage: ' + numeral(quote.coverage).format('$0,0.00') +
+    '</p>' +
+    '<button id="send" class="secondary-content btn-large waves-effect waves-light right-align orange">Apply<i class="material-icons right">send</i></button>' +
+    '</li>'
+  $('#noQuotes').hide();
+  $('#quoteValues').append(quoteString);
 }
 
+function getRandomCompany() {
+  var companyLength = companyNames.length -1;
+  var randomIndex = Math.round(Math.random() * companyLength - 1);
+  if (randomIndex >  companyNames.length -1) {
+    randomIndex = companyNames.length -1;
+  }
+  return companyNames[randomIndex];
+}
 
 function addQuotes() {
   var meta = InsuranceContract.deployed();
+
+  var companyName;
+  var companyLength = companyNames.length;
+
+  companyName = getRandomCompany();
   setTimeout(function() {
-    meta.submitQuote(account, web3.toHex("RGA Reinsurance"), 200000, 1000000, {
+    companyName = getRandomCompany();
+    meta.submitQuote(account, web3.toHex(companyName), 600, 500000, {
       from: account1
     }).then(function() {
       setStatus("Transaction complete!");
@@ -158,8 +214,11 @@ function addQuotes() {
     });
   }, 10000)
 
+  companyName = getRandomCompany();
+  console.log(companyName);
   setTimeout(function() {
-    meta.submitQuote(account, web3.toHex("Principal"), 100000, 2000000, {
+    companyName = getRandomCompany();
+    meta.submitQuote(account, web3.toHex(companyName), 750, 600000, {
       from: account1
     }).then(function() {
       setStatus("Transaction complete!");
@@ -170,8 +229,11 @@ function addQuotes() {
     });
   }, 2000)
 
+
+  console.log(companyName);
   setTimeout(function() {
-    meta.submitQuote(account, web3.toHex("Prudential"), 400000, 500000, {
+    companyName = getRandomCompany();
+    meta.submitQuote(account, web3.toHex(companyName), 925, 800000, {
       from: account1
     }).then(function() {
       setStatus("Transaction complete!");
@@ -182,18 +244,6 @@ function addQuotes() {
     });
   }, 3000)
 
-
-  setTimeout(function() {
-    meta.submitQuote(account, web3.toHex("IBM Bluemix Insurance"), 2000000000, 500, {
-      from: account1
-    }).then(function() {
-      setStatus("Transaction complete!");
-      console.log("fired event");
-    }).catch(function(e) {
-      console.log(e);
-      setStatus("Error requesting quote.");
-    });
-  }, 4000)
 }
 
 window.onload = function() {
@@ -216,32 +266,62 @@ window.onload = function() {
     account4 = accounts[4];
     account5 = accounts[5];
 
-    queryForQuotes();
-
     listenForQuotes();
 
+    queryForQuotes();
+
     $("#coverageDetailsBox").hide();
-    $("#optionalBox").hide();
+    $("#consentBox").hide();
   });
 
-
-
-  $("#personalInfoTab").click(function() {
+  $(".personalInfoTab").click(function(){
     $("#personalInfoBox").show();
     $("#coverageDetailsBox").hide();
-    $("#optionalBox").hide();
+    $("#consentBox").hide();
+    $(".consentTab").children(".active").removeClass("active");
+    $(".coverageDetailsTab").children(".active").removeClass("active");
   });
 
-  $("#coverageDetailsTab").click(function() {
+  $(".coverageDetailsTab").click(function(){
     $("#personalInfoBox").hide();
     $("#coverageDetailsBox").show();
-    $("#optionalBox").hide();
+    $("#consentBox").hide();
+    $(".personalInfoTab").children(".active").removeClass("active");
+    $(".consentTab").children(".active").removeClass("active");
   });
-
-  $("#optionalTab").click(function() {
+  
+  $(".consentTab").click(function(){
     $("#personalInfoBox").hide();
     $("#coverageDetailsBox").hide();
-    $("#optionalBox").show();
+    $("#consentBox").show();
+    $(".personalInfoTab").children(".active").removeClass("active");
+    $(".coverageDetailsTab").children(".active").removeClass("active");
   });
+
+  $("#step2NextButton").click(function() {
+    $(".consentTab").click();
+  });
+
+  $("#step1NextButton").click(function() {
+    $(".coverageDetailsTab").click();
+  });
+
+
+
+  $('#coverageNeedsDropdown li a').on('click', function() {
+    $('#coverageNeedsButton').text($(this).text());
+  });
+
+  $('#educationDropdown li a').on('click', function() {
+    $('#educationButton').text($(this).text());
+  });
+
+  $('#livingExpensesDropdown li a').on('click', function() {
+    $('#livingExpensedButton').text($(this).text());
+  });
+
+  $('#funeralCostDropdown li a').on('click', function() {
+    $('#funeralCostButton').text($(this).text());
+  });
+
 }
- 
